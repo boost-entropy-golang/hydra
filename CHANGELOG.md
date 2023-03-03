@@ -674,9 +674,14 @@
 * Broken OIDC compliance images ([#3454](https://github.com/ory/hydra/issues/3454)) ([50bc1b4](https://github.com/ory/hydra/commit/50bc1b4267045a19845816af295b638179be9c2c))
 * Clean up unused code ([488f930](https://github.com/ory/hydra/commit/488f930e4f2c39386b1c1ff68dd60d1aaf968cb9))
 * Migration typo ([#3453](https://github.com/ory/hydra/issues/3453)) ([ed27c10](https://github.com/ory/hydra/commit/ed27c1016fe8f8fea5a99a0e2203552c3bdc0ab3))
+* No longer use separate public and private keys in HSM key manager ([#3401](https://github.com/ory/hydra/issues/3401)) ([375bd5a](https://github.com/ory/hydra/commit/375bd5a69c0ece3aea0714ab7374ff8d09672c10))
 * Pin nancy ([0156556](https://github.com/ory/hydra/commit/0156556bb35278fcbc416b02504bc04511c468a7))
 
 ### Features
+
+* Allow setting access token type in client ([#3446](https://github.com/ory/hydra/issues/3446)) ([a6beed4](https://github.com/ory/hydra/commit/a6beed4659febd0917379d6da1e51d8ef75bc859)):
+
+    The access token type (`jwt` or `opaque`) can now be set in the client configuration. The value set here will overwrite the global value for all flows concerning that client.
 
 * Allow skipping consent for trusted clients ([#3451](https://github.com/ory/hydra/issues/3451)) ([4f65365](https://github.com/ory/hydra/commit/4f65365f14ea28f979ebab7eb9c3396cbb25d619)):
 

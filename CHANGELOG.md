@@ -4,7 +4,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [0.0.0 (2023-07-06)](#000-2023-07-06)
+- [0.0.0 (2023-07-10)](#000-2023-07-10)
     - [Bug Fixes](#bug-fixes)
     - [Features](#features)
 - [2.2.0-pre.0 (2023-06-22)](#220-pre0-2023-06-22)
@@ -698,13 +698,14 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.0.0](https://github.com/ory/hydra/compare/v2.2.0-pre.0...v0.0.0) (2023-07-06)
+# [0.0.0](https://github.com/ory/hydra/compare/v2.2.0-pre.0...v0.0.0) (2023-07-10)
 
 
 ### Bug Fixes
 
 * Racy random string generation ([#3555](https://github.com/ory/hydra/issues/3555)) ([1b26c4c](https://github.com/ory/hydra/commit/1b26c4cb96400b333fe214d2da892fc045bbc69f))
 * Return proper error when the grant request cannot be parsed ([#3558](https://github.com/ory/hydra/issues/3558)) ([26f2d34](https://github.com/ory/hydra/commit/26f2d34459f55444e880e6e27e081c002d630246))
+* Use correct tracer in middleware ([#3567](https://github.com/ory/hydra/issues/3567)) ([807cbd2](https://github.com/ory/hydra/commit/807cbd209af376b9b2d18c278cc927d1c43e6865))
 
 ### Features
 

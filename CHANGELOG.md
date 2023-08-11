@@ -4,7 +4,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [0.0.0 (2023-08-10)](#000-2023-08-10)
+- [0.0.0 (2023-08-11)](#000-2023-08-11)
     - [Bug Fixes](#bug-fixes)
     - [Features](#features)
 - [2.2.0-pre.0 (2023-06-22)](#220-pre0-2023-06-22)
@@ -698,7 +698,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.0.0](https://github.com/ory/hydra/compare/v2.2.0-pre.0...v0.0.0) (2023-08-10)
+# [0.0.0](https://github.com/ory/hydra/compare/v2.2.0-pre.0...v0.0.0) (2023-08-11)
 
 
 ### Bug Fixes
@@ -706,6 +706,7 @@
 * Deflake ttl test ([6741a49](https://github.com/ory/hydra/commit/6741a49f7b4d55a270f3eb968921894b1e5f2989))
 * Only query access tokens by hashed signature ([a21e945](https://github.com/ory/hydra/commit/a21e94519416cc7801995b0804696348b18fa844))
 * Racy random string generation ([#3555](https://github.com/ory/hydra/issues/3555)) ([1b26c4c](https://github.com/ory/hydra/commit/1b26c4cb96400b333fe214d2da892fc045bbc69f))
+* Reject invalid JWKS in client configuration / dependency cleanup and bump ([#3603](https://github.com/ory/hydra/issues/3603)) ([1d73d83](https://github.com/ory/hydra/commit/1d73d83eb03e4ceef6edb4bd0738959007053118))
 * Restore ability to override auth and token urls for exemplary app ([#3590](https://github.com/ory/hydra/issues/3590)) ([dfb129a](https://github.com/ory/hydra/commit/dfb129a5b7c8ae01e1c490fce1a127697abc7bee))
 * Return proper error when the grant request cannot be parsed ([#3558](https://github.com/ory/hydra/issues/3558)) ([26f2d34](https://github.com/ory/hydra/commit/26f2d34459f55444e880e6e27e081c002d630246))
 * Use correct tracer in middleware ([#3567](https://github.com/ory/hydra/issues/3567)) ([807cbd2](https://github.com/ory/hydra/commit/807cbd209af376b9b2d18c278cc927d1c43e6865))
@@ -725,6 +726,22 @@
 
 * Allow additional SQL migrations ([#3587](https://github.com/ory/hydra/issues/3587)) ([8900cbb](https://github.com/ory/hydra/commit/8900cbb770d6f39a5c3322fce488675ca6d0138a))
 * Allow Go migrations ([#3602](https://github.com/ory/hydra/issues/3602)) ([8eed306](https://github.com/ory/hydra/commit/8eed306800fa330a1cda752dbb11ddf09faf25ad))
+* Allow to disable claim mirroring ([#3563](https://github.com/ory/hydra/issues/3563)) ([c72a316](https://github.com/ory/hydra/commit/c72a31641ee79f090a2ac1b64a276be58312b2ee)):
+
+    This PR introduces another config option called `oauth2:mirror_top_level_claims` which may be used to disable the mirroring of custom claims into the `ext` claim of the jwt.
+    This new config option is an opt-in. If unused the behavior remains as-is to ensure backwards compatibility.
+    
+    Example:
+    
+    ```yaml
+    oauth2:
+      allowed_top_level_claims:
+        - test_claim
+      mirror_top_level_claims: false # -> this will prevent test_claim to be mirrored within ext
+    ```
+    
+    Closes https://github.com/ory/hydra/issues/3348
+
 * Bump fosite and add some more tracing ([0b56f53](https://github.com/ory/hydra/commit/0b56f53a491e165f68a53f013989328ce86928ba))
 * **cmd:** Add route that redirects to the auth code url ([4db6416](https://github.com/ory/hydra/commit/4db64161699e4301c003b2787baecae22c912c17))
 * Parallel generation of JSON web key set ([#3561](https://github.com/ory/hydra/issues/3561)) ([5bd9002](https://github.com/ory/hydra/commit/5bd9002db7baa2fe2c2529fee38825d66a68991f))

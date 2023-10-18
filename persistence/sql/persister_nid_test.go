@@ -158,11 +158,11 @@ func (s *PersisterTestSuite) TestAuthenticate() {
 			client := &client.Client{ID: "client-id", Secret: "secret"}
 			require.NoError(t, r.Persister().CreateClient(s.t1, client))
 
-			actual, err := r.Persister().Authenticate(s.t2, "client-id", []byte("secret"))
+			actual, err := r.Persister().AuthenticateClient(s.t2, "client-id", []byte("secret"))
 			require.Error(t, err)
 			require.Nil(t, actual)
 
-			actual, err = r.Persister().Authenticate(s.t1, "client-id", []byte("secret"))
+			actual, err = r.Persister().AuthenticateClient(s.t1, "client-id", []byte("secret"))
 			require.NoError(t, err)
 			require.NotNil(t, actual)
 		})
@@ -2002,14 +2002,13 @@ func (s *PersisterTestSuite) TestVerifyAndInvalidateConsentRequest() {
 
 			consentVerifier := x.Must(f.ToConsentVerifier(s.t1, r))
 
-			_, err := r.ConsentManager().VerifyAndInvalidateConsentRequest(s.t2, f, consentVerifier)
+			_, err := r.ConsentManager().VerifyAndInvalidateConsentRequest(s.t2, consentVerifier)
 			require.Error(t, err)
 			require.Equal(t, flow.FlowStateConsentUnused, f.State)
 			require.Equal(t, false, f.ConsentWasHandled)
-			_, err = r.ConsentManager().VerifyAndInvalidateConsentRequest(s.t1, f, consentVerifier)
+			_, err = r.ConsentManager().VerifyAndInvalidateConsentRequest(s.t1, consentVerifier)
 			require.NoError(t, err)
-			require.Equal(t, flow.FlowStateConsentUsed, f.State)
-			require.Equal(t, true, f.ConsentWasHandled)
+			require.Equal(t, flow.FlowStateConsentUnused, f.State) // TODO: Delegate reuse detection to external service.
 		})
 	}
 }
@@ -2027,14 +2026,13 @@ func (s *PersisterTestSuite) TestVerifyAndInvalidateLoginRequest() {
 			f.State = flow.FlowStateLoginUnused
 
 			loginVerifier := x.Must(f.ToLoginVerifier(s.t1, r))
-			_, err := r.ConsentManager().VerifyAndInvalidateLoginRequest(s.t2, f, loginVerifier)
+			_, err := r.ConsentManager().VerifyAndInvalidateLoginRequest(s.t2, loginVerifier)
 			require.Error(t, err)
 			require.Equal(t, flow.FlowStateLoginUnused, f.State)
 			require.Equal(t, false, f.LoginWasUsed)
-			_, err = r.ConsentManager().VerifyAndInvalidateLoginRequest(s.t1, f, loginVerifier)
+			_, err = r.ConsentManager().VerifyAndInvalidateLoginRequest(s.t1, loginVerifier)
 			require.NoError(t, err)
-			require.Equal(t, flow.FlowStateLoginUsed, f.State)
-			require.Equal(t, true, f.LoginWasUsed)
+			require.Equal(t, flow.FlowStateLoginUnused, f.State) // TODO: Delegate reuse detection to external service.
 		})
 	}
 }

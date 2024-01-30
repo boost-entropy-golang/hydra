@@ -4,7 +4,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [0.0.0 (2024-01-22)](#000-2024-01-22)
+- [0.0.0 (2024-01-30)](#000-2024-01-30)
     - [Bug Fixes](#bug-fixes)
     - [Documentation](#documentation)
     - [Features](#features)
@@ -703,7 +703,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.0.0](https://github.com/ory/hydra/compare/v2.2.0-rc.3...v0.0.0) (2024-01-22)
+# [0.0.0](https://github.com/ory/hydra/compare/v2.2.0-rc.3...v0.0.0) (2024-01-30)
 
 
 ### Bug Fixes
@@ -727,6 +727,7 @@
     * fix: bump golangci-lint
 
 * Improved SSRF protection ([#3669](https://github.com/ory/hydra/issues/3669)) ([24c3be5](https://github.com/ory/hydra/commit/24c3be574a11a76e69f09a24754f20cf644b624c))
+* Incorrect down migration ([#3708](https://github.com/ory/hydra/issues/3708)) ([8812e0e](https://github.com/ory/hydra/commit/8812e0e67b1f192de4ab6819c8f2bb98e6a5b7a7)), closes [/github.com/ory/hydra/pull/3705#discussion_r1471514014](https://github.com//github.com/ory/hydra/pull/3705/issues/discussion_r1471514014)
 * Remove required mark ([#3693](https://github.com/ory/hydra/issues/3693)) ([3a764a0](https://github.com/ory/hydra/commit/3a764a053a3d7eab698668cf63d387ea76c1db40))
 * Timeout in jwt-bearer grants when too many grants are available ([#3692](https://github.com/ory/hydra/issues/3692)) ([a748797](https://github.com/ory/hydra/commit/a748797761f5503b048df1b57bcc406f16cd40a3))
 * Verifiable credentials JWT format ([#3614](https://github.com/ory/hydra/issues/3614)) ([0176adc](https://github.com/ory/hydra/commit/0176adc17848ab1dd021910ea31202dbdcd51737))
@@ -746,6 +747,10 @@
     the authorization request. When specifying `prompt=registration`, Ory Hydra
     will redirect the user to the URL found under `urls.registration`
     (instead of `urls.login`).
+
+* Add skip_logout_consent option to clients ([#3705](https://github.com/ory/hydra/issues/3705)) ([2a653e6](https://github.com/ory/hydra/commit/2a653e66803ddb03de02d981dbc8ea57b2ac0936)):
+
+    Adds a special field which disables the logout consent screen when performing OIDC logout.
 
 * Allow injecting extra fosite strategies ([#3646](https://github.com/ory/hydra/issues/3646)) ([88b0b7c](https://github.com/ory/hydra/commit/88b0b7cfdf1a1968bf3a720cb2e6640451e2956b))
 * Re-enable legacy client IDs ([#3628](https://github.com/ory/hydra/issues/3628)) ([5dd7d30](https://github.com/ory/hydra/commit/5dd7d306ba8181b1fff1225d056a2ee69183392e)):

@@ -1259,8 +1259,8 @@
           },
           {
             "type": "string",
-            "description": "Consent Challenge ID\n\nIf set, revoke all token chains derived from this particular consent request ID.",
-            "name": "consent_challenge_id",
+            "description": "Consent Request ID\n\nIf set, revoke all token chains derived from this particular consent request ID.",
+            "name": "consent_request_id",
             "in": "query"
           },
           {
@@ -2637,7 +2637,7 @@
       "title": "OAuth 2.0 Client",
       "properties": {
         "access_token_strategy": {
-          "description": "OAuth 2.0 Access Token Strategy\n\nAccessTokenStrategy is the strategy used to generate access tokens.\nValid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens\nSetting the stragegy here overrides the global setting in `strategies.access_token`.",
+          "description": "OAuth 2.0 Access Token Strategy\n\nAccessTokenStrategy is the strategy used to generate access tokens.\nValid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token\nSetting the stragegy here overrides the global setting in `strategies.access_token`.",
           "type": "string"
         },
         "allowed_cors_origins": {
@@ -2867,11 +2867,15 @@
           "$ref": "#/definitions/StringSliceJSONFormat"
         },
         "challenge": {
-          "description": "ID is the identifier of the consent authorization request.",
+          "description": "Challenge is used to retrieve/accept/deny the consent request.",
           "type": "string"
         },
         "client": {
           "$ref": "#/definitions/oAuth2Client"
+        },
+        "consent_request_id": {
+          "description": "ConsentRequestID is the ID of the consent request.",
+          "type": "string"
         },
         "context": {
           "$ref": "#/definitions/JSONRawMessage"
@@ -2947,6 +2951,10 @@
       "properties": {
         "consent_request": {
           "$ref": "#/definitions/oAuth2ConsentRequest"
+        },
+        "consent_request_id": {
+          "description": "ConsentRequestID is the identifier of the consent request that initiated this consent session.",
+          "type": "string"
         },
         "context": {
           "$ref": "#/definitions/JSONRawMessage"
